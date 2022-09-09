@@ -1,0 +1,23 @@
+﻿@page
+@model vosplzen.sem1.Pages.GDPRModel
+@{
+}
+
+
+<h1>@Model.PageContent.Title</h1>
+
+<p>@Model.PageContent.Content</p>
+
+<hr />
+
+<h5>Jazyk: @Model.PageContent.Language</h5>
+
+<img src="@Model.PageContent.ImageUrl" width="100" class="m-1"/>
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <input asp-for="@Model.PageContent.Language" hidden class="form-control" />
+    <input asp-for="@Model.PageContent.Title" hidden class="form-control" />
+    <input asp-for="@Model.PageContent.Content" hidden class="form-control" />
+    <button class="btn btn-primary" type="submit">Změň JAZYK</button>
+</form>
