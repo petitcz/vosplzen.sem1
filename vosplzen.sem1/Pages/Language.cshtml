@@ -1,16 +1,16 @@
 ﻿@page
-@model vosplzen.sem1.Pages.GDPRModel
+@model vosplzen.sem1.Pages.LanguageModel
 @{
 }
 
 
 <h1>@Model.PageContent.Title</h1>
 
-<p>@Model.PageContent.Content</p>
+<p>@Html.Raw(Model.PageContent.Content)</p>
 
 <hr />
 
-<h5>Jazyk: @Model.PageContent.Language</h5>
+<h5>Jazyk: @Model.PageContent.Language </h5>
 
 <img src="@Model.PageContent.ImageUrl" width="100" class="m-1"/>
 <hr />

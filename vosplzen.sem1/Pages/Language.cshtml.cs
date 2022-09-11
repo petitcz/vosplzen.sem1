@@ -10,7 +10,7 @@ using vosplzen.sem1.Model;
 namespace vosplzen.sem1.Pages
 {
 
-    public class GDPRModel : PageModel
+    public class LanguageModel : PageModel
     {
 
 

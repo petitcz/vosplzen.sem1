@@ -22,7 +22,7 @@ namespace vosplzen.sem1.Core
             {
                 result.Language = lanCode;
                 result.Title = "Datenshutz";
-                result.Content = "Hier kann man etwas über GDPR Bedigungen lesen.";
+                result.Content = "Hier kann man etwas über <a href='/Privacy'>Datenschutzeinstellung</a>  lesen.";
                 result.ImageUrl = "https://upload.wikimedia.org/wikipedia/en/thumb/b/ba/Flag_of_Germany.svg/300px-Flag_of_Germany.svg.png";
 
             }
@@ -30,7 +30,7 @@ namespace vosplzen.sem1.Core
             {
                 result.Language = lanCode;
                 result.Title = "Privacy";
-                result.Content = "Tak a short look at your privacy settings.";
+                result.Content = "Tak a short look at your <a href='/Privacy'>privacy</a> settings.";
                 result.ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Flag_of_Great_Britain_%281707%E2%80%931800%29.svg/1920px-Flag_of_Great_Britain_%281707%E2%80%931800%29.svg.png";
 
             }
