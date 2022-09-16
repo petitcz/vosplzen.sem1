@@ -7,19 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h2.Model;
 
-namespace vosplzen.sem1h2.Pages.UserPages
+namespace vosplzen.sem1h2.Pages.InventoryPages
 {
     public class EditModel : GenericPageModel
     {
         [BindProperty]
-        public User EditUser { get; set; }
+        public InventoryItem EditItem { get; set; }
 
         public EditModel(AppDbContext context)
         {
 
             _context = context;
         }
-
         public IActionResult OnPost()
         {
 
@@ -28,15 +27,15 @@ namespace vosplzen.sem1h2.Pages.UserPages
 
                 return Page();
             }
-            _context.Users.Update(EditUser);
+            _context.InventoryItems.Update(EditItem);
             _context.SaveChanges();
 
-            return Redirect("/UserPages/Index");
+            return Redirect("/InventoryPages/Index");
         }
-        public void OnGet(int userid)
+        public void OnGet(int itemId)
         {
 
-            EditUser = _context.Users.Where(x => x.Id == userid).FirstOrDefault();
+            EditItem = _context.InventoryItems.Where(x => x.Id == itemId).FirstOrDefault();
         }
     }
 }

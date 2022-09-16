@@ -11,6 +11,6 @@ namespace vosplzen.sem1h2.Model.Generics
         [Key]
         public int Id { get; set; }
 
-        public DateTime Modified { get; set; }
+        public DateTime Modified { get; set; } = DateTime.Now;
     }
 }
