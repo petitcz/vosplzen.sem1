@@ -29,6 +29,7 @@
             <td class="m-2 p-2">@item.Modified.ToString("dd.MM.yyyy H:mm")</td>
 
             <td class="m-2 p-2"><a asp-page="Delete" asp-route-userid="@item.Id">Smazat</a></td>
+            <td class="m-2 p-2"><a asp-page="Edit" asp-route-userid="@item.Id">Edit</a></td>
         </tr>
         }
 

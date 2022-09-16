@@ -8,38 +8,35 @@ using vosplzen.sem1h2.Model;
 
 namespace vosplzen.sem1h2.Pages.UserPages
 {
-    public class CreateModel : PageModel
+    public class EditModel : PageModel
     {
+        [BindProperty]
+        public User EditUser { get; set; }
         private AppDbContext _context { get; set; }
 
-        [BindProperty]
-        public User User { get; set; }
-
-        public CreateModel(AppDbContext context)
+        public EditModel(AppDbContext context)
         {
+
             _context = context;
-        }
-        public void OnGet()
-        {
-
         }
 
         public IActionResult OnPost()
         {
 
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
 
                 return Page();
             }
-
-            User.Modified = DateTime.Now;
-          
-            _context.Users.Add(User);
+            _context.Users.Update(EditUser);
             _context.SaveChanges();
 
             return Redirect("/UserPages/Index");
         }
+        public void OnGet(int userid)
+        {
 
-
+            EditUser = _context.Users.Where(x => x.Id == userid).FirstOrDefault();
+        }
     }
 }

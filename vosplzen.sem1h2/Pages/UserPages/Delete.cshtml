@@ -2,3 +2,11 @@
 @model vosplzen.sem1h2.Pages.UserPages.DeleteModel
 @{
 }
+
+<form method="post">
+
+    <span>Opravdu smazat uživatele @Model.DelUser.DisplayName?</span>
+    <input asp-for="DelUser.Id" hidden />
+    <button type="submit" asp-for="">Ano</button>
+    <a href="Index">Ne</a>
+</form>
