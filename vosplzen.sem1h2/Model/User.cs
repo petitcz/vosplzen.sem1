@@ -19,6 +19,9 @@ namespace vosplzen.sem1h2.Model
 
         [Required]
         public string PersonalId { get; set; }
+        
+        [NotMapped]
+        public string DisplayName { get { return $"{Firstname} {Lastname}"; } }
 
     }
 }

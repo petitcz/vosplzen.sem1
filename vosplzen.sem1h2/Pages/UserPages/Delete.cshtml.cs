@@ -24,9 +24,17 @@ namespace vosplzen.sem1h2.Pages.UserPages
         {
 
             Console.WriteLine(userid);
-            
 
-            DelUser = _context.Users.Where(x => x.Id == userid).FirstOrDefault();
+
+            UserToDelete = _context.Users.Where(x => x.Id == userid).FirstOrDefault();
+        }
+
+        public IActionResult OnPost()
+        {
+            _context.Users.Remove(UserToDelete);
+            _context.SaveChangesAsync();
+
+            return Redirect("Index");
         }
     }
 }
