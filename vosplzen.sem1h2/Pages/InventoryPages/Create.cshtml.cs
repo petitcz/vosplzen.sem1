@@ -7,13 +7,13 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h2.Model;
 
-namespace vosplzen.sem1h2.Pages.UserPages
+namespace vosplzen.sem1h2.Pages.InventoryPages
 {
     public class CreateModel : GenericPageModel
     {
 
         [BindProperty]
-        public User User { get; set; }
+        public InventoryItem Item { get; set; }
 
         public CreateModel(AppDbContext context)
         {
@@ -21,25 +21,23 @@ namespace vosplzen.sem1h2.Pages.UserPages
         }
         public void OnGet()
         {
-
         }
 
         public IActionResult OnPost()
         {
 
-            if (!ModelState.IsValid) {
+            if (!ModelState.IsValid)
+            {
 
                 return Page();
             }
 
-            User.Modified = DateTime.Now;
-          
-            _context.Users.Add(User);
+            Item.Modified = DateTime.Now;
+
+            _context.InventoryItems.Add(Item);
             _context.SaveChanges();
 
-            return Redirect("/UserPages/Index");
+            return Redirect("/InventoryPages/Index");
         }
-
-
     }
 }

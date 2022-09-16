@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h2.Model;
 
 namespace vosplzen.sem1h2.Pages.UserPages
 {
-    public class DeleteModel : PageModel
+    public class DeleteModel : GenericPageModel
     {
-        private AppDbContext _context;
         
         [BindProperty]
         public User UserToDelete { get; set; }
