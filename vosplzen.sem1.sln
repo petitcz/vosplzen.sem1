@@ -7,6 +7,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vosplzen.sem1", "vosplzen.s
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sem1h1", "Sem1h1", "{413B41DC-BFF5-4AB4-A56E-45B42A98A883}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sem1h2", "Sem1h2", "{CA6C0CF5-2613-434E-86EA-32B385CAEFF5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vosplzen.sem1h2", "vosplzen.sem1h2\vosplzen.sem1h2.csproj", "{8E867528-A28E-40D7-A06E-8658B2DC4492}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,12 +21,17 @@ Global
 		{805D0A5C-97C7-4773-B1AB-443B79F37D3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{805D0A5C-97C7-4773-B1AB-443B79F37D3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{805D0A5C-97C7-4773-B1AB-443B79F37D3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E867528-A28E-40D7-A06E-8658B2DC4492}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E867528-A28E-40D7-A06E-8658B2DC4492}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E867528-A28E-40D7-A06E-8658B2DC4492}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E867528-A28E-40D7-A06E-8658B2DC4492}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{805D0A5C-97C7-4773-B1AB-443B79F37D3A} = {413B41DC-BFF5-4AB4-A56E-45B42A98A883}
+		{8E867528-A28E-40D7-A06E-8658B2DC4492} = {CA6C0CF5-2613-434E-86EA-32B385CAEFF5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9D17C7D1-A355-412A-ABA7-4353749173FF}

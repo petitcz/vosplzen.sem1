@@ -1,0 +1,37 @@
+﻿@page
+@model vosplzen.sem1h2.Pages.UserPages.IndexModel
+@{
+}
+
+
+<h1>Uživatelé</h1>
+<hr />
+<a href="/UserPages/Create"> Vytvořit</a>
+<hr />
+
+<table class="border-1">
+    <thead>
+        <tr class="border-bottom border-dark">
+            <th class="m-2 p-2">Jméno</th>
+            <th class="m-2 p-2">Příjmení</th>
+            <th class="m-2 p-2">Identifikátor</th>
+            <th class="m-2 p-2">Vytvořeno</th>
+            <th class="m-2 p-2"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Users)
+        {
+        <tr class="border-bottom">
+            <td class="m-2 p-2">@item.Firstname </td>
+            <td class="m-2 p-2">@item.Lastname</td>
+            <td class="m-2 p-2">@item.PersonalId</td>
+            <td class="m-2 p-2">@item.Modified.ToString("dd.MM.yyyy H:mm")</td>
+
+            <td class="m-2 p-2"><a asp-page="Delete" asp-route-userid="@item.Id">Smazat</a></td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>
