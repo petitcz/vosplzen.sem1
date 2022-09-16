@@ -9,7 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sem1h1", "Sem1h1", "{413B41
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sem1h2", "Sem1h2", "{CA6C0CF5-2613-434E-86EA-32B385CAEFF5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "vosplzen.sem1h2", "vosplzen.sem1h2\vosplzen.sem1h2.csproj", "{8E867528-A28E-40D7-A06E-8658B2DC4492}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "vosplzen.sem1h2", "vosplzen.sem1h2\vosplzen.sem1h2.csproj", "{8E867528-A28E-40D7-A06E-8658B2DC4492}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Sem1h3", "Sem1h3", "{4620B98A-9C3F-47EC-A870-B331F8422DBE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
