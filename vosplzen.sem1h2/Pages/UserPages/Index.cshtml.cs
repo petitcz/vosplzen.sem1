@@ -26,8 +26,6 @@ namespace vosplzen.sem1h2.Pages.UserPages
             Users = _context.Users.ToList();
 
 
-         
-
         }
     }
 }
