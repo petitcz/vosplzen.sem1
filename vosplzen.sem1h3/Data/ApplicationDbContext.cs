@@ -13,5 +13,8 @@ namespace vosplzen.sem1h3.Data
             : base(options)
         {
         }
+
+        public DbSet<InventoryItem> InventoryItems { get; set; }
+
     }
 }

@@ -1,0 +1,26 @@
+﻿@page
+@model vosplzen.sem1h3.Pages.InventoryPages.EditModel
+@{
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>Title:</label>
+        <input asp-for="@Model.EditItem.Title" class="form-control" />
+        <span asp-validation-for="@Model.EditItem.Title" class="bg-warning"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Serial number:</label>
+        <input asp-for="@Model.EditItem.SerNum" class="form-control" />
+        <span asp-validation-for="@Model.EditItem.SerNum" class="bg-warning"></span>
+    </div>
+
+    <input asp-for="@Model.EditItem.Id" hidden />
+
+    <button class="btn btn-primary" type="submit">
+        Odeslat
+    </button>
+
+</form>

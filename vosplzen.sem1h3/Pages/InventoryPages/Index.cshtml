@@ -1,0 +1,33 @@
+﻿@page
+@model vosplzen.sem1h3.Pages.InventoryPages.IndexModel
+@{
+}
+
+
+<h1>Items</h1>
+<hr />
+<a href="/InventoryPages/Create"> Vytvořit</a>
+<hr />
+
+<table class="border-1">
+    <thead>
+        <tr class="border-bottom border-dark">
+            <th class="m-2 p-2">Title</th>
+            <th class="m-2 p-2">Serial number</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Items)
+        {
+            <tr class="border-bottom">
+                <td class="m-2 p-2">@item.Title </td>
+                <td class="m-2 p-2">@item.SerNum</td>
+
+                <td class="m-2 p-2"><a asp-page="Delete" asp-route-itemid="@item.Id">Smazat</a></td>
+                <td class="m-2 p-2"><a asp-page="Edit" asp-route-itemid="@item.Id">Edit</a></td>
+            </tr>
+        }
+
+    </tbody>
+
+</table>
