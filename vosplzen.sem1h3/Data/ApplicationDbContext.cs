@@ -16,6 +16,7 @@ namespace vosplzen.sem1h3.Data
         }
 
         public DbSet<InventoryItem> InventoryItems { get; set; }
+        public DbSet<Classroom> Classrooms { get; set; }
 
     }
 }

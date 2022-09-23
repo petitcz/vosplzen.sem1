@@ -40,7 +40,7 @@ namespace vosplzen.sem1h3
             {
                 options.LoginPath = "/Identity/Account/Login";  //in your case /Account/Login
                 options.LogoutPath = "/Identity/Account/logout";
-                options.AccessDeniedPath = "/Identity/Account/login";                
+                options.AccessDeniedPath = "/Identity/Account/AccessDenied";                
             });
 
             services.AddRazorPages();
