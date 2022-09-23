@@ -23,18 +23,19 @@ namespace vosplzen.sem1h3.Areas.Identity.Pages.Account
         private readonly SignInManager<Student> _signInManager;
         private readonly UserManager<Student> _userManager;
         private readonly ILogger<RegisterModel> _logger;
-        private readonly IEmailSender _emailSender;
+        private readonly RoleManager<Role> _rolemanager;
 
         public RegisterModel(
             UserManager<Student> userManager,
             SignInManager<Student> signInManager,
             ILogger<RegisterModel> logger,
-            IEmailSender emailSender)
+            RoleManager<Role> rolemanager
+            )
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _logger = logger;
-            _emailSender = emailSender;
+            _rolemanager = rolemanager;
         }
 
         [BindProperty]
@@ -87,7 +88,32 @@ namespace vosplzen.sem1h3.Areas.Identity.Pages.Account
                 {
                     _logger.LogInformation("User created a new account with password.");
 
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    var userRoleExists = await _rolemanager.RoleExistsAsync("User");
+                    if(!userRoleExists)
+                    {
+                        var role = new Role() { Name = "User" };
+                        await _rolemanager.CreateAsync(role);
+                    }
+
+                    var adminRoleExists = await _rolemanager.RoleExistsAsync("Admin");
+                    if (!userRoleExists)
+                    {
+                        var role = new Role() { Name = "Admin" };
+                        await _rolemanager.CreateAsync(role);
+                    }
+
+                    var idResult = await _userManager.AddToRoleAsync(user, "User");
+
+                    if(!idResult.Succeeded)
+                    {
+                        _logger.LogError(idResult.Errors.FirstOrDefault().Description);
+                        throw new Exception("Role was not assigned!");
+
+                     
+                    }
+
+
+                    await _signInManager.SignInAsync(user, isPersistent: false);                                     
                     return LocalRedirect(returnUrl);
 
                 }

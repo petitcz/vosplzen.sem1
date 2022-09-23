@@ -7,10 +7,9 @@ using System.Threading.Tasks;
 
 namespace vosplzen.sem1h3.Data.Model
 {
-    public class Student:IdentityUser<int>
+    public class Role:IdentityRole<int>
     {
-        [Required]
-        public string Class { get; set; }
+     
 
     }
 }

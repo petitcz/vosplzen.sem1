@@ -8,9 +8,12 @@ using vosplzen.sem1h3.Data.Model.Generics;
 using vosplzen.sem1h3.Data.Model;
 using vosplzen.sem1h3.Data;
 using vosplzen.sem1h2.Generics;
+using Microsoft.AspNetCore.Authorization;
 
 namespace vosplzen.sem1h3.Pages.InventoryPages
 {
+
+    [Authorize(Roles = "Admin")]
     public class CreateModel : GenericPageModel
     {
 

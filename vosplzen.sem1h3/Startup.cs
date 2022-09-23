@@ -31,9 +31,19 @@ namespace vosplzen.sem1h3
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddDefaultIdentity<Student>(options => options.SignIn.RequireConfirmedAccount = true)
+            services.AddIdentity<Student, Role>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.LoginPath = "/Identity/Account/Login";  //in your case /Account/Login
+                options.LogoutPath = "/Identity/Account/logout";
+                options.AccessDeniedPath = "/Identity/Account/login";
+            });
+
             services.AddRazorPages();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
