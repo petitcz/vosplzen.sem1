@@ -6,8 +6,12 @@
 
 <h1>Items</h1>
 <hr />
-<a href="/InventoryPages/Create"> Vytvořit</a>
-<hr />
+@if (User.IsInRole("Admin"))
+{
+    <a href="/InventoryPages/Create"> Vytvořit</a>
+    <hr />
+}
+
 
 <table class="border-1">
     <thead>
