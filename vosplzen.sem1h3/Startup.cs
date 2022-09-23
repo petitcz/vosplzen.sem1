@@ -31,14 +31,16 @@ namespace vosplzen.sem1h3
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
-            services.AddIdentity<Student, Role>(options => options.SignIn.RequireConfirmedAccount = false)
+
+            services.AddIdentity<Student, Role>(options => 
+            options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.ConfigureApplicationCookie(options =>
             {
                 options.LoginPath = "/Identity/Account/Login";  //in your case /Account/Login
                 options.LogoutPath = "/Identity/Account/logout";
-                options.AccessDeniedPath = "/Identity/Account/login";
+                options.AccessDeniedPath = "/Identity/Account/login";                
             });
 
             services.AddRazorPages();
