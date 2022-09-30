@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.InventoryPages
 {
@@ -17,19 +18,18 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
 
         [BindProperty]
         public InventoryItem ItemToDelete { get; set; }
-        public DeleteModel(ApplicationDbContext context)
+        public DeleteModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
         public void OnGet(int itemId)
         {
 
-            ItemToDelete = _context.InventoryItems.Where(x => x.Id == itemId).FirstOrDefault();
+            ItemToDelete = _masterservice.GetById<InventoryItem>(itemId);
         }
         public IActionResult OnPost()
         {
-            _context.InventoryItems.Remove(ItemToDelete);
-            _context.SaveChanges();
+            _masterservice.Delete<InventoryItem>(ItemToDelete.Id);
 
             return Redirect("Index");
         }

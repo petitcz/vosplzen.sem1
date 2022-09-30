@@ -9,6 +9,7 @@ using vosplzen.sem1h4.Data.Model;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h2.Generics;
 using Microsoft.AspNetCore.Authorization;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.InventoryPages
 {
@@ -20,9 +21,9 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
         [BindProperty]
         public InventoryItem Item { get; set; }
 
-        public CreateModel(ApplicationDbContext context)
+        public CreateModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
         public void OnGet()
         {
@@ -33,14 +34,11 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
 
             if (!ModelState.IsValid)
             {
-
                 return Page();
             }
 
-            Item.Modified = DateTime.Now;
+            _masterservice.Add<InventoryItem>(Item);
 
-            _context.InventoryItems.Add(Item);
-            _context.SaveChanges();
 
             return Redirect("/InventoryPages/Index");
         }

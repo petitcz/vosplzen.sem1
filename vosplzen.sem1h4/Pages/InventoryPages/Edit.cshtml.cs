@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.InventoryPages
 {
@@ -17,21 +18,18 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
         [BindProperty]
         public InventoryItem EditItem { get; set; }
 
-        public EditModel(ApplicationDbContext context)
+        public EditModel(IMasterService masterservice)
         {
-
-            _context = context;
+            _masterservice = masterservice;
         }
         public IActionResult OnPost()
         {
-
             if (!ModelState.IsValid)
             {
-
                 return Page();
             }
-            _context.InventoryItems.Update(EditItem);
-            _context.SaveChanges();
+
+            _masterservice.Update<InventoryItem>(EditItem);
 
             return Redirect("/InventoryPages/Index");
         }

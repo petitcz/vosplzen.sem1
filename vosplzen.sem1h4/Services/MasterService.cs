@@ -24,7 +24,6 @@ namespace vosplzen.sem1h4.Services
             return result;
         }
 
-
         public void Add<T>(T item) where T : Generic
         {
             _context.Set<T>().Add(item);
