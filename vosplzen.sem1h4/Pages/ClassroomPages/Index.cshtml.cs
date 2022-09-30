@@ -7,26 +7,27 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.ClassroomPages
 {
     [Authorize(Roles = "Admin, User")]
-    public class IndexModel : PageModel
+    public class IndexModel : GenericPageModel
     {
-        private readonly vosplzen.sem1h4.Data.ApplicationDbContext _context;
 
-        public IndexModel(vosplzen.sem1h4.Data.ApplicationDbContext context)
+        public IndexModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
-        public IList<Classroom> Classroom { get;set; }
+        public IList<Classroom> Classrooms { get;set; }
 
-        public async Task OnGetAsync()
+        public void OnGetAsync()
         {
-            Classroom = await _context.Classrooms.ToListAsync();
+            Classrooms = _masterservice.GetAll<Classroom>();
         }
     }
 }

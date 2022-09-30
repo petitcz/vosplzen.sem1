@@ -7,32 +7,33 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.ClassroomPages
 {
     [Authorize(Roles = "Admin")]
-    public class EditModel : PageModel
+    public class EditModel : GenericPageModel
     {
-        private readonly vosplzen.sem1h4.Data.ApplicationDbContext _context;
 
-        public EditModel(vosplzen.sem1h4.Data.ApplicationDbContext context)
+        public EditModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
         [BindProperty]
         public Classroom Classroom { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGet(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Classroom = await _context.Classrooms.FirstOrDefaultAsync(m => m.Id == id);
+            Classroom = _masterservice.GetById<Classroom>((int)id);
 
             if (Classroom == null)
             {
@@ -41,39 +42,19 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
-        public async Task<IActionResult> OnPostAsync()
+
+        public IActionResult OnPost()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
 
-            _context.Attach(Classroom).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ClassroomExists(Classroom.Id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
+            _masterservice.Update<Classroom>(Classroom);
+                
             return RedirectToPage("./Index");
         }
 
-        private bool ClassroomExists(int id)
-        {
-            return _context.Classrooms.Any(e => e.Id == id);
-        }
+
     }
 }

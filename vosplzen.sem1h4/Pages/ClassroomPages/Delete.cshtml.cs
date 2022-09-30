@@ -6,32 +6,32 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.ClassroomPages
 {
     [Authorize(Roles = "Admin")]
-    public class DeleteModel : PageModel
+    public class DeleteModel : GenericPageModel
     {
-        private readonly vosplzen.sem1h4.Data.ApplicationDbContext _context;
-
-        public DeleteModel(vosplzen.sem1h4.Data.ApplicationDbContext context)
+        public DeleteModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
         [BindProperty]
         public Classroom Classroom { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public IActionResult OnGetAsync(int? id)
         {
             if (id == null)
             {
                 return NotFound();
             }
 
-            Classroom = await _context.Classrooms.FirstOrDefaultAsync(m => m.Id == id);
+            Classroom = _masterservice.GetById<Classroom>((int)id);
 
             if (Classroom == null)
             {
@@ -40,7 +40,7 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
             return Page();
         }
 
-        public async Task<IActionResult> OnPostAsync(int? id)
+        public async Task<IActionResult> OnPost(int? id)
         {
             if (id == null)
             {
@@ -51,8 +51,7 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
 
             if (Classroom != null)
             {
-                _context.Classrooms.Remove(Classroom);
-                await _context.SaveChangesAsync();
+                _masterservice.Delete<Classroom>((int)id);
             }
 
             return RedirectToPage("./Index");

@@ -6,19 +6,20 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.ClassroomPages
 {
     [Authorize(Roles = "Admin, User")]
-    public class DetailsModel : PageModel
+    public class DetailsModel : GenericPageModel
     {
-        private readonly vosplzen.sem1h4.Data.ApplicationDbContext _context;
 
-        public DetailsModel(vosplzen.sem1h4.Data.ApplicationDbContext context)
+        public DetailsModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
         public Classroom Classroom { get; set; }

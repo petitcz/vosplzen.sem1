@@ -5,11 +5,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h2.Generics
 {
     public class GenericPageModel : PageModel
     {
         protected ApplicationDbContext _context { get; set; }
+        protected IMasterService _masterservice { get; set; }
+
     }
 }

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.InventoryPages
 {
@@ -16,15 +17,14 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
     public class IndexModel : GenericPageModel
     {
         public List<InventoryItem> Items { get; set; }
-        public IndexModel(ApplicationDbContext context)
+        public IndexModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
         public void OnGet()
         {
-
-            Items = _context.InventoryItems.ToList();
+            Items = _masterservice.GetAll<InventoryItem>();
         }
     }
 }

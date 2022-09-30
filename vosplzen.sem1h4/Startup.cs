@@ -13,6 +13,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4
 {
@@ -31,6 +33,9 @@ namespace vosplzen.sem1h4
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
+
+            services.AddScoped<IMasterService, MasterService>();
+
 
             services.AddIdentity<Student, Role>(options => 
             options.SignIn.RequireConfirmedAccount = false)
