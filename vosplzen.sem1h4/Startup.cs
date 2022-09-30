@@ -38,7 +38,9 @@ namespace vosplzen.sem1h4
             services.AddScoped<IUserService, UserService>();
 
             services.AddScoped<IMasterService, MasterService>();
-          
+
+            services.AddScoped<IStudentService, StudentService>();
+
 
 
             services.AddIdentity<Student, Role>(options => 

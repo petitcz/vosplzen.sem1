@@ -1,0 +1,38 @@
+﻿@page
+@model vosplzen.sem1h4.Pages.StudentPages.IndexModel
+@{
+}
+
+
+<h1>Uživatelé</h1>
+<hr />
+
+
+<table class="border-1">
+    <thead>
+        <tr class="border-bottom border-dark">
+            <th class="m-2 p-2">First Name</th>
+            <th class="m-2 p-2">Last Name</th>
+            <th class="m-2 p-2">Class</th>
+            <th class="m-2 p-2">UserName</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.Students)
+        {
+        <tr class="border-bottom">
+            <td class="m-2 p-2">@item.FirstName </td>
+            <td class="m-2 p-2">@item.LastName</td>
+            <td class="m-2 p-2">@item.Class</td>
+            <td class="m-2 p-2">@item.UserName</td>
+
+
+            <td class="m-2 p-2"><a asp-page="Delete" asp-route-itemid="@item.Id">Smazat</a></td>
+            <td class="m-2 p-2"><a asp-page="Edit" asp-route-itemid="@item.Id">Edit</a></td>
+        </tr>
+        }
+
+    </tbody>
+
+</table>

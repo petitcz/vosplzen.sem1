@@ -1,0 +1,38 @@
+﻿@page
+@model vosplzen.sem1h4.Pages.StudentPages.EditModel
+@{
+}
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label>First Name:</label>
+        <input asp-for="@Model.EditStudent.FirstName" class="form-control" />
+        <span asp-validation-for="@Model.EditStudent.FirstName" class="bg-warning"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Last Name:</label>
+        <input asp-for="@Model.EditStudent.LastName" class="form-control" />
+        <span asp-validation-for="@Model.EditStudent.LastName" class="bg-warning"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Class:</label>
+        <input asp-for="@Model.EditStudent.Class" class="form-control" />
+        <span asp-validation-for="@Model.EditStudent.Class" class="bg-warning"></span>
+    </div>
+
+    <div class="form-group">
+        <label>User Name:</label>
+        <input readonly asp-for="@Model.EditStudent.UserName" class="form-control" />
+        <span asp-validation-for="@Model.EditStudent.UserName" class="bg-warning"></span>
+    </div>
+
+    <input asp-for="@Model.EditStudent.Id" hidden />
+
+    <button class="btn btn-primary" type="submit">
+        Odeslat
+    </button>
+
+</form>

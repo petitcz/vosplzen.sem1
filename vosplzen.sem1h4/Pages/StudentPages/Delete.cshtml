@@ -1,0 +1,14 @@
+﻿@page
+@model vosplzen.sem1h4.Pages.StudentPages.DeleteModel
+@{
+}
+
+<h1>Opravdu smazat tohoto uživatele?</h1>
+<h5>@Model.StudentToDelete.DisplayName</h5>
+
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <input hidden asp-for="StudentToDelete.Id" />
+    <a href="Index" class="btn btn-danger">Návrat</a> <button class="btn btn-primary">Smazat</button>
+</form>
