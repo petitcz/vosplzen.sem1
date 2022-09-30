@@ -47,7 +47,6 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
                 return NotFound();
             }
 
-            Classroom = await _context.Classrooms.FindAsync(id);
 
             if (Classroom != null)
             {

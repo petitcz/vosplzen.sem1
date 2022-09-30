@@ -12,10 +12,12 @@ namespace vosplzen.sem1h4.Services
     {
 
         private ApplicationDbContext _context;
+        private IUserService _userservice;
 
-        public MasterService(ApplicationDbContext context)
+        public MasterService(ApplicationDbContext context, IUserService userservice)
         {
             _context = context;
+            _userservice = userservice;
         }
 
         public int Count<T>() where T : Generic
@@ -26,10 +28,19 @@ namespace vosplzen.sem1h4.Services
 
         public void Add<T>(T item) where T : Generic
         {
+            item.CreatedBy = _userservice.GetCurrentUsername();
+
             _context.Set<T>().Add(item);
             _context.SaveChanges();
         }
+        public void Update<T>(T item) where T : Generic
+        {
+            item.Modified = DateTime.Now;
+            item.ModifiedBy = _userservice.GetCurrentUsername();
 
+            _context.Set<T>().Update(item);
+            _context.SaveChanges();
+        }
         public void Delete<T>(int id) where T : Generic
         {
             var removal = _context.Set<T>().Where(x => x.Id == id).FirstOrDefault();
@@ -50,10 +61,6 @@ namespace vosplzen.sem1h4.Services
             return result;
         }
 
-        public void Update<T>(T item) where T : Generic
-        {
-            _context.Set<T>().Update(item);
-            _context.SaveChanges();
-        }
+
     }
 }

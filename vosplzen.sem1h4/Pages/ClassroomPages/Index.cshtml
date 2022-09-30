@@ -22,7 +22,7 @@
                     @Html.DisplayNameFor(model => model.Classrooms[0].Title)
                 </th>
                 <th>
-                    @Html.DisplayNameFor(model => model.Classrooms[0].Modified)
+                    Last change
                 </th>
                 <th></th>
             </tr>
@@ -35,7 +35,7 @@
                         @Html.DisplayFor(modelItem => item.Title)
                     </td>
                     <td>
-                        @Html.DisplayFor(modelItem => item.Modified)
+                        @item.LastChange
                     </td>
                     <td>
                         @if (User.IsInRole("Admin"))

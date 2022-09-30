@@ -34,7 +34,11 @@ namespace vosplzen.sem1h4
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
 
+
+            services.AddScoped<IUserService, UserService>();
+
             services.AddScoped<IMasterService, MasterService>();
+          
 
 
             services.AddIdentity<Student, Role>(options => 

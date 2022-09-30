@@ -6,19 +6,20 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using vosplzen.sem1h2.Generics;
 using vosplzen.sem1h4.Data;
 using vosplzen.sem1h4.Data.Model;
+using vosplzen.sem1h4.Services.IServices;
 
 namespace vosplzen.sem1h4.Pages.ClassroomPages
 {
     [Authorize(Roles = "Admin")]
-    public class CreateModel : PageModel
+    public class CreateModel : GenericPageModel
     {
-        private readonly vosplzen.sem1h4.Data.ApplicationDbContext _context;
 
-        public CreateModel(vosplzen.sem1h4.Data.ApplicationDbContext context)
+        public CreateModel(IMasterService masterservice)
         {
-            _context = context;
+            _masterservice = masterservice;
         }
 
         public IActionResult OnGet()
@@ -30,15 +31,13 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
         public Classroom Classroom { get; set; }
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
-        public async Task<IActionResult> OnPostAsync()
+        public IActionResult OnPostAsync()
         {
             if (!ModelState.IsValid)
             {
                 return Page();
             }
-
-            _context.Classrooms.Add(Classroom);
-            await _context.SaveChangesAsync();
+            _masterservice.Add<Classroom>(Classroom);
 
             return RedirectToPage("./Index");
         }

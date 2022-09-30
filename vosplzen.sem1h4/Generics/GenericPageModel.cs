@@ -11,7 +11,6 @@ namespace vosplzen.sem1h2.Generics
 {
     public class GenericPageModel : PageModel
     {
-        protected ApplicationDbContext _context { get; set; }
         protected IMasterService _masterservice { get; set; }
 
     }

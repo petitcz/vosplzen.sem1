@@ -31,7 +31,7 @@ namespace vosplzen.sem1h4.Pages.ClassroomPages
                 return NotFound();
             }
 
-            Classroom = await _context.Classrooms.FirstOrDefaultAsync(m => m.Id == id);
+            Classroom = _masterservice.GetById<Classroom>((int)id);
 
             if (Classroom == null)
             {

@@ -36,7 +36,7 @@ namespace vosplzen.sem1h4.Pages.InventoryPages
         public void OnGet(int itemId)
         {
 
-            EditItem = _context.InventoryItems.Where(x => x.Id == itemId).FirstOrDefault();
+            EditItem = _masterservice.GetById<InventoryItem>(itemId); 
         }
     }
 }
