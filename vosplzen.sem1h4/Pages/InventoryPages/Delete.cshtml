@@ -1,0 +1,14 @@
+﻿@page
+@model vosplzen.sem1h4.Pages.InventoryPages.DeleteModel
+@{
+}
+
+<h1>Opravdu smazat položku?</h1>
+<h5>@Model.ItemToDelete.DisplayName</h5>
+
+<hr />
+
+<form method="post" enctype="multipart/form-data">
+    <input hidden asp-for="ItemToDelete.Id" />
+    <a href="Index" class="btn btn-danger">Návrat</a> <button class="btn btn-primary">Smazat</button>
+</form>

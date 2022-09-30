@@ -1,0 +1,52 @@
+﻿@page
+@model vosplzen.sem1h4.Pages.ClassroomPages.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Index</h1>
+
+@if (User.IsInRole("Admin"))
+{
+    <p>
+        <a asp-page="Create">Create New</a>
+    </p>
+}
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classroom[0].Title)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Classroom[0].Modified)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.Classroom)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Title)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Modified)
+                    </td>
+                    <td>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a>
+                        <label>|</label>
+                            <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                        }
+                    <label>|</label><a asp-page="./Details" asp-route-id="@item.Id">Details</a>
+                        </td>
+                </tr>
+            }
+        </tbody>
+    </table>
