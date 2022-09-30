@@ -35,20 +35,20 @@ namespace vosplzen.sem1h4.Services
 
         public void Delete(int id)
         {
-            var userToRemove = _context.Users.Where(x => x.Id == id).FirstOrDefault();
-            _context.Users.Remove(userToRemove);
+            var userToDisable = GetById(id);
+            userToDisable.IsActive = false;
             _context.SaveChanges();
         }
 
         public List<Student> GetAll()
         {
-            List<Student> list = _context.Users.ToList();
+            List<Student> list = _context.Users.Where(x => x.IsActive).ToList();
             return list;
         }
 
         public Student GetById(int id)
         {
-            var user = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            var user = _context.Users.Where(x => x.Id == id && x.IsActive).FirstOrDefault();
             return user;
         }
 
@@ -64,6 +64,7 @@ namespace vosplzen.sem1h4.Services
             student.Class = item.Class;
             student.FirstName = item.FirstName;
             student.LastName = item.LastName;
+            student.Modified = DateTime.Now;
             Update(student);
         }
 

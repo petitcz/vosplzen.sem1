@@ -10,6 +10,8 @@ namespace vosplzen.sem1h4.Data.Model
 {
     public class Student:IdentityUser<int>
     {
+        public bool IsActive { get; set; } = true;
+        public DateTime Modified { get; set; } = DateTime.Now;
         [Required]
         public string Class { get; set; }
         [Required]
@@ -20,7 +22,5 @@ namespace vosplzen.sem1h4.Data.Model
         public string DisplayName { 
             get { return FirstName + " " + LastName; } 
         }
-
-
     }
 }
